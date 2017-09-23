@@ -7,9 +7,10 @@ class Dashboard extends CI_Controller {
 	{
 		$data['header'] = 'template/header';
 		$data['sidebar'] = 'template/sidebar';
-		$data['main_content'] = 'dashboard'; 
-		$data['footer'] = 'template/footer'; 
+		$data['main_content'] = 'dashboard';
+		$data['footer'] = 'template/footer';
 		$this->load->view('template/template',$data);
 	}
+	
 }
 ?>
