@@ -9,11 +9,22 @@ class Employee extends CI_Controller {
 		$this -> load -> model('employee_model');
 
 	}
-	
-function functionToTestgetAndSaveEmployeeDetailsResult(){
-		
-		$result=$this->getAndSaveEmployeeDetails();
+
+	function functionToTestgetAndSaveEmployeeDetailsResult() {
+
+		$result = $this -> getAndSaveEmployeeDetails();
 		print_r($result);
+	}
+
+	function getLastEmployeeID() {
+		 $employeeData=$this -> employee_model -> toGetLastEmployeeID();
+		 $employeeID=$employeeData['employeeID'];
+		 $oldVersionBit=$employeeData['versionBit'];
+		 $versionBit=1;
+		 $updateversionBitOfLastEmployeeAdded = $this -> employee_model -> updateIdOfLastEmployeeAddedAfterSucessfullEmployeeAddition($employeeID,$versionBit);
+		 $employeeID=$employeeID+1;
+		 return $employeeID;
+	
 	}
 
 	function getAndSaveEmployeeDetails() {
@@ -136,11 +147,19 @@ function functionToTestgetAndSaveEmployeeDetailsResult(){
 				die();
 
 			}
-
-			$successResponse = array("status" => "true", "msg" => "Teacher Successfully Added !!!");
-			$successResponse = json_encode($successResponse);
-			return $successResponse;
-
+			/*updating of last id of employee added*/
+			$versionBit=0;
+			$updateIDOfLastEmployeeAdded = $this -> employee_model -> updateIdOfLastEmployeeAddedAfterSucessfullEmployeeAddition($employeeID,$versionBit);
+			if ($updateIDOfLastEmployeeAdded == 1) {
+				$successResponse = array("status" => "true", "msg" => "Teacher Successfully Added !!!");
+				$successResponse = json_encode($successResponse);
+				return $successResponse;
+			} else {
+				$errorResponse = array("status" => "false", "msg" => "Employee Is not added due to some error please try again !!!");
+				$errorResponse = json_encode($errorResponse);
+				return $errorResponse;
+				die();
+			}
 		} else {
 
 			$errorResponse = array("status" => "false", "msg" => "Employee Is not added due to some error please try again !!!");

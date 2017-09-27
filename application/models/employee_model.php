@@ -29,13 +29,13 @@ class Employee_model extends CI_Model {
 		foreach ($jobHistory as $a) {
 			$data = array('employeeID' => $a['employeeID'], 'company' => $a['company'], 'designation' => $a['designation'], 'employmentStartDate' => $a['employmentStartDate'], 'employmentEndDate' => $a['employmentEndDate'], 'JobDescription' => $a['JobDescription'], 'experienceLetterScannedImage' => $a['experienceLetterScannedImage']);
 
-			 $save=$this->db->insert('employee_job_history', $data);
+			$save = $this -> db -> insert('employee_job_history', $data);
 			/*echo "<pre>";
-			print_r($data);
-			echo "<pre>";
-			echo "ends here";*/
+			 print_r($data);
+			 echo "<pre>";
+			 echo "ends here";*/
 		}
-		
+
 		return $save;
 
 	}
@@ -45,31 +45,51 @@ class Employee_model extends CI_Model {
 		foreach ($education as $a) {
 			$data = array('employeeID' => $a['employeeID'], 'instituteName' => $a['instituteName'], 'qualification' => $a['qualification'], 'admissionDate' => $a['admissionDate'], 'graduationDate' => $a['graduationDate'], 'degreeScannedImage' => $a['degreeScannedImage']);
 
-			$save= $this->db->insert('employee_education_history', $data);
+			$save = $this -> db -> insert('employee_education_history', $data);
 			/*echo "<pre>";
-			print_r($data);
-			echo "<pre>";
-			echo "ends here";*/
+			 print_r($data);
+			 echo "<pre>";
+			 echo "ends here";*/
 		}
-		
+
 		return $save;
 	}
 
 	function createTraining($training) {
 
 		foreach ($training as $a) {
-			$data = array('employeeID' => $a['employeeID'], 'trainingInstituteName' => $a['trainingInstituteName'], 'trainingStartDate' => $a['trainingStartDate'], 
-			'trainingEndDate' => $a['trainingEndDate'],'ExamDate' => $a['ExamDate'],'certificateScannedImage' => $a['certificateScannedImage'],
-			'certificationName' => $a['certificationName']);
+			$data = array('employeeID' => $a['employeeID'], 'trainingInstituteName' => $a['trainingInstituteName'], 'trainingStartDate' => $a['trainingStartDate'], 'trainingEndDate' => $a['trainingEndDate'], 'ExamDate' => $a['ExamDate'], 'certificateScannedImage' => $a['certificateScannedImage'], 'certificationName' => $a['certificationName']);
 
-			$save= $this->db->insert('employee_trainings_history', $data);
+			$save = $this -> db -> insert('employee_trainings_history', $data);
 			/*echo "<pre>";
-			print_r($data);
-			echo "<pre>";
-			echo "ends here";*/
+			 print_r($data);
+			 echo "<pre>";
+			 echo "ends here";*/
 		}
-		
+
 		return $save;
+	}
+
+	function updateIdOfLastEmployeeAddedAfterSucessfullEmployeeAddition($employeeID,$versionBit) {
+
+		$update_data = array('employeeID' => $employeeID, 'versionBit' => $versionBit);
+		$this -> db -> where('id', 1);
+		$this -> db -> update('id_of_last_employee_added', $update_data);
+	}
+
+	function toGetLastEmployeeID() {
+		$id = 1;
+		$queryString = "SELECT employeeID,versionBit FROM id_of_last_employee_added WHERE id= ?";
+		$result = $this -> db -> query($queryString, $id);
+		if ($result -> num_rows() == 1) {
+
+			$row = $result -> row();
+			$data = array('employeeID' => $row -> employeeID,'versionBit'=>$row->versionBit);
+			
+			return $data;
+			
+
+		}
 	}
 
 }
