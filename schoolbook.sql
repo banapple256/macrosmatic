@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2017 at 11:54 AM
+-- Generation Time: Sep 27, 2017 at 01:03 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -149,6 +149,25 @@ CREATE TABLE `employee_trainings_history` (
   `certificateScannedImage` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `id_of_last_employee_added`
+--
+
+CREATE TABLE `id_of_last_employee_added` (
+  `id` int(11) NOT NULL,
+  `employeeID` int(11) NOT NULL,
+  `versionBit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `id_of_last_employee_added`
+--
+
+INSERT INTO `id_of_last_employee_added` (`id`, `employeeID`, `versionBit`) VALUES
+(1, 1004, 1);
+
 --
 -- Indexes for dumped tables
 --
@@ -194,6 +213,12 @@ ALTER TABLE `employee_trainings_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `id_of_last_employee_added`
+--
+ALTER TABLE `id_of_last_employee_added`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -232,6 +257,12 @@ ALTER TABLE `employee_salary_details`
 --
 ALTER TABLE `employee_trainings_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `id_of_last_employee_added`
+--
+ALTER TABLE `id_of_last_employee_added`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
