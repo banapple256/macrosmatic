@@ -30,9 +30,9 @@
                     <li> <a href="javascript:;"><span class="title">Facebook Skin</span></a> </li>
                 </ul>
             </li>
-            <li class="has-sub"> <a href="javascript:;"><i class="fa fa-user fa-fw"></i><span class="title">Teachers</span></a>
+            <li class="has-sub"> <a href="javascript:;"><i class="fa fa-user fa-fw"></i><span class="title">Employees</span></a>
                 <ul>
-                    <li> <a href="javascript:;"><span class="title">Add Teachers</span></a> </li>
+                    <li> <a href="<?php echo base_url(); ?>employee""><span class="title">Add Employee</span></a> </li>
                 </ul>
             </li>
         </ul>
