@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2017 at 01:03 PM
+-- Generation Time: Oct 01, 2017 at 06:53 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -37,6 +37,7 @@ CREATE TABLE `employee_basic_details` (
   `userName` varchar(35) NOT NULL,
   `email` varchar(255) NOT NULL,
   `mobileNum` varchar(35) NOT NULL,
+  `homePhone` varchar(100) NOT NULL,
   `cnicNumber` varchar(35) NOT NULL,
   `dob` varchar(25) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -54,8 +55,9 @@ CREATE TABLE `employee_basic_details` (
 -- Dumping data for table `employee_basic_details`
 --
 
-INSERT INTO `employee_basic_details` (`Id`, `employeeID`, `firstName`, `middleName`, `lastName`, `userName`, `email`, `mobileNum`, `cnicNumber`, `dob`, `address`, `emergencyContactName`, `emergencyContactNumber`, `bloodGroup`, `father_husbandName`, `hireDate`, `profilePic`, `resume`, `cnicScannedImage`) VALUES
-(16, 1004, 'Sufian', '', 'Qayyum', 'qs02', 'qsufian@gmail.com', '03455895007', '33105-1244965-7', '1992-02-28', '6/3-d cat # IV, Sector I-8/1, Islamabad', 'Sheraz Hashmi', '03135446302', 'B-', 'Abdul Qayyum', '2017-09-02', '1004_profile_pic.jpeg', '1004_resume.pdf', '1004_cnic.jpeg');
+INSERT INTO `employee_basic_details` (`Id`, `employeeID`, `firstName`, `middleName`, `lastName`, `userName`, `email`, `mobileNum`, `homePhone`, `cnicNumber`, `dob`, `address`, `emergencyContactName`, `emergencyContactNumber`, `bloodGroup`, `father_husbandName`, `hireDate`, `profilePic`, `resume`, `cnicScannedImage`) VALUES
+(16, 1004, 'Sufian', '', 'Qayyum', 'qs02', 'qsufian@gmail.com', '03455895007', '', '33105-1244965-7', '1992-02-28', '6/3-d cat # IV, Sector I-8/1, Islamabad', 'Sheraz Hashmi', '03135446302', 'B-', 'Abdul Qayyum', '2017-09-02', '1004_profile_pic.jpeg', '1004_resume.pdf', '1004_cnic.jpeg'),
+(19, 1005, 'Hamza', 'Tariq', 'Chintoo', 'th01', 'hamza@gmail.com', '03335901673', '', '33092-6711987-3', '17-7-1992', '1/2-D, CAT #4,Sector I-8/1 Islamabad', 'Sufian Qayyum', '03455895007', 'AB+', 'Tariq Mehmood', '02-09-2017', 'C:/xampp/htdocs/macrosmatic/uploads/1005/1005_profilePic8.jpg', 'C:/xampp/htdocs/macrosmatic/uploads/1005/1005_profilePic4.pdf', 'C:/xampp/htdocs/macrosmatic/uploads/1005/1005_profilePic9.jpg');
 
 -- --------------------------------------------------------
 
@@ -77,7 +79,8 @@ CREATE TABLE `employee_department_details` (
 --
 
 INSERT INTO `employee_department_details` (`id`, `employeeID`, `department`, `designation`, `employeeType`, `supervisorID`) VALUES
-(9, 1004, 'Technical', 'Engineer', 'Permanent', 109);
+(9, 1004, 'Technical', 'Engineer', 'Permanent', 109),
+(12, 1005, 'Finanace', 'Investment Consultant', 'Contractual', 131);
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,8 @@ CREATE TABLE `employee_salary_details` (
 --
 
 INSERT INTO `employee_salary_details` (`id`, `employeeID`, `employeeType`, `Salary`) VALUES
-(9, 1004, 'Permanent', 30000);
+(9, 1004, 'Permanent', 30000),
+(12, 1005, 'Contractual', 50000);
 
 -- --------------------------------------------------------
 
@@ -166,7 +170,7 @@ CREATE TABLE `id_of_last_employee_added` (
 --
 
 INSERT INTO `id_of_last_employee_added` (`id`, `employeeID`, `versionBit`) VALUES
-(1, 1004, 1);
+(1, 1005, 0);
 
 --
 -- Indexes for dumped tables
@@ -226,37 +230,37 @@ ALTER TABLE `id_of_last_employee_added`
 -- AUTO_INCREMENT for table `employee_basic_details`
 --
 ALTER TABLE `employee_basic_details`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `employee_department_details`
 --
 ALTER TABLE `employee_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `employee_education_history`
 --
 ALTER TABLE `employee_education_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee_job_history`
 --
 ALTER TABLE `employee_job_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee_salary_details`
 --
 ALTER TABLE `employee_salary_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `employee_trainings_history`
 --
 ALTER TABLE `employee_trainings_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `id_of_last_employee_added`
