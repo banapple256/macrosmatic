@@ -73,12 +73,13 @@ function getValues() {
 	cdrReqParams.supervisorID = superviserID;
 	cdrReqParams.salary = salary;
 	var jsonStr = JSON.stringify(cdrReqParams);
-	API.call("/scooper/search_subscriber_basic.json", 'POST', function(data) {
+	console.log(jsonStr);
+	API.call("/macrosmatic/employee/getAndSaveEmployeeDetails", 'POST', function(data) {
 		console.log(data);
 	}, function(error) {
 		console.log(error);
-	}, jsonStr);
+	}, cdrReqParams);
 
-	console.log("First Name : " + firstName + '\n' + "Middle Name : " + middleName + '\n' + "Last Name : " + lastName + '\n' + "User Name : " + userName + '\n' + "Email : " + email + '\n' + "cnic : " + cnic + '\n' + "mobileNumber : " + mobileNumber + '\n' + "homePhone : " + homePhone + '\n' + "dob : " + dob + '\n' + "address : " + address + '\n' + "emergencyCName : " + emergencyCName + '\n' + "emergencyCNumber : " + emergencyCNumber + '\n' + "bloodGroup : " + bloodGroup + '\n' + "spouseName : " + spouseName + '\n' + "hireDate : " + hireDate + '\n' + "employeeType : " + employeeType + '\n' + "department : " + department + '\n' + "designation : " + designation + '\n' + "superviserID : " + superviserID + '\n' + "Education Details : " + educationDetails + '\n');
+	//console.log("First Name : " + firstName + '\n' + "Middle Name : " + middleName + '\n' + "Last Name : " + lastName + '\n' + "User Name : " + userName + '\n' + "Email : " + email + '\n' + "cnic : " + cnic + '\n' + "mobileNumber : " + mobileNumber + '\n' + "homePhone : " + homePhone + '\n' + "dob : " + dob + '\n' + "address : " + address + '\n' + "emergencyCName : " + emergencyCName + '\n' + "emergencyCNumber : " + emergencyCNumber + '\n' + "bloodGroup : " + bloodGroup + '\n' + "spouseName : " + spouseName + '\n' + "hireDate : " + hireDate + '\n' + "employeeType : " + employeeType + '\n' + "department : " + department + '\n' + "designation : " + designation + '\n' + "superviserID : " + superviserID + '\n' + "Education Details : " + educationDetails + '\n');
 
 }

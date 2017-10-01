@@ -9,13 +9,13 @@ class Employee extends CI_Controller {
 		$this -> load -> model('employee_model');
 
 	}
-	
+
 	public function index() {
 		$data['header'] = 'template/header';
 		$data['sidebar'] = 'template/sidebar';
 		$data['main_content'] = 'addEmployee';
 		$data['footer'] = 'template/footer';
-		$this->load->view('template/template',$data);
+		$this -> load -> view('template/template', $data);
 	}
 
 	/*public function index() {
@@ -109,11 +109,12 @@ class Employee extends CI_Controller {
 	function getAndSaveEmployeeDetails() {
 
 		$employeeID = $this -> getMaxIDFromEmployeeDetails();
-
-		echo $firstName = $this -> input -> post('firstName');
-
-		echo $middleName = $this -> input -> post('middleName');
-
+		
+		$firstName = $this -> input -> post('firstName');
+	
+		$middleName = $this -> input -> post('middleName');
+		
+		
 		$lastName = $this -> input -> post('lastName');
 
 		$userName = $this -> input -> post('userName');
@@ -123,17 +124,17 @@ class Employee extends CI_Controller {
 		$mobileNum = $this -> input -> post('mobileNum');
 
 		$homePhone = $this -> input -> post('homePhone');
-		
+
 		$cnicNumber = $this -> input -> post('cnicNumber');
 
 		$profilePic = 'profilePic';
-		$profilePic = $this -> do_upload($profilePic, $employeeID);
+		//$profilePic = $this -> do_upload($profilePic, $employeeID);
 
 		$resume = 'resume';
-		$resume = $this -> do_upload($resume, $employeeID);
+		//$resume = $this -> do_upload($resume, $employeeID);
 
-		$cnic = 'cnicScannedImage';
-		$cnicScannedImage = $this -> do_upload($cnic, $employeeID);
+		$cnicScannedImage = 'cnicScannedImage';
+		//$cnicScannedImage = $this -> do_upload($cnic, $employeeID);
 		//die();
 		$dob = $this -> input -> post('dob');
 
@@ -149,10 +150,9 @@ class Employee extends CI_Controller {
 
 		$hireDate = $this -> input -> post('hireDate');
 
-		$saveEmployeeBasicDetails = $this -> employee_model -> createEmployee($employeeID, $firstName, $middleName,$homePhone, $lastName, $userName, $email, $mobileNum, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume, $cnicScannedImage);
-
+		$saveEmployeeBasicDetails = $this -> employee_model -> createEmployee($employeeID, $firstName, $middleName, $homePhone, $lastName, $userName, $email, $mobileNum, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume, $cnicScannedImage);		
 		if ($saveEmployeeBasicDetails == 1) {
-
+				
 			$employeeType = $this -> input -> post('employeeType');
 
 			$department = $this -> input -> post('department');
@@ -178,7 +178,7 @@ class Employee extends CI_Controller {
 
 					//$education = array(0 => array('employeeID' => '1005', 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009', 'degreeScannedImage' => '1004_SSC_Degree.pdf'), 1 => array('employeeID' => '1004', 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011', 'degreeScannedImage' => '1004_HSSC_Degree.pdf'));
 
-					$education = $this -> input -> post('education');
+					$education = null; //$this -> input -> post('education');
 					//null;
 
 					if (is_array($education) === true && count($education) > 0) {
@@ -191,7 +191,7 @@ class Employee extends CI_Controller {
 						// echo "no employee training data";
 					}
 					//$jobHistory = array(0 => array('employeeID' => '1004', 'company' => 'Techaccess', 'designation' => 'SupportEngineer', 'employmentStartDate' => '01-02-2015', 'employmentEndDate' => '01-03-2016', 'JobDescription' => 'xyz', 'experienceLetterScannedImage' => '1004_ExperiencedLetter_techacces.pdf'), 1 => array('employeeID' => '1004', 'company' => 'GlobizServ', 'designation' => 'SoftwareEngineer', 'employmentStartDate' => '01-02-2014', 'employmentEndDate' => '01-03-2015', 'JobDescription' => 'xyz', 'experienceLetterScannedImage' => '1004_ExperiencedLetter_GlobizServe.pdf'));
-					$jobHistory = $this -> input -> post('jobHistory');
+					$jobHistory = null; //$this -> input -> post('jobHistory');
 					//null;
 					if (is_array($jobHistory) === true && count($jobHistory) > 0) {
 						/*function call to save employe job history details in jobHistory table*/
@@ -203,7 +203,7 @@ class Employee extends CI_Controller {
 
 					//$training = array(0 => array('employeeID' => '1004', 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '10-03-2016', 'trainingEndDate' => '10-06-2016', 'ExamDate' => '11-11-2016', 'certificateScannedImage' => '1004_database_certificate.pdf', 'certificationName' => 'OCP'), 1 => array('employeeID' => '1004', 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '11-04-2016', 'trainingEndDate' => '01-01-2017', 'ExamDate' => '11-02-2017', 'certificateScannedImage' => '1004_linux_certificate.pdf', 'certificationName' => 'RHCE'), );
 
-					$training = $this -> input -> post('training');
+					$training = null; //$this -> input -> post('training');
 					//null;
 					if (is_array($training) === true && count($training) > 0) {
 						/*function call to save employe training details in training table*/
@@ -220,10 +220,10 @@ class Employee extends CI_Controller {
 					$tableName = 'employee_department_details';
 					$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
 					$errorResponse = array("status" => "false", "msg" => $saveEmployeeSalaryDetails);
-					$errorResponse = json_encode($errorResponse);
-					$data = array('some_data' => $errorResponse);
+					echo $errorResponse = json_encode($errorResponse);
+					//$data = array('some_data' => $errorResponse);
 
-					$this -> load -> view('upload_success', $data);
+					//$this -> load -> view('upload_success', $data);
 					//$this -> load -> view('upload_form', $errorResponse);
 					//return $errorResponse;
 
@@ -232,10 +232,10 @@ class Employee extends CI_Controller {
 				$tableName = 'employee_basic_details';
 				$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
 				$errorResponse = array("status" => "false", "msg" => $saveEmployeeDepartmentalDetails);
-				$errorResponse = json_encode($errorResponse);
-				$data = array('some_data' => $errorResponse);
+				echo $errorResponse = json_encode($errorResponse);
+				//$data = array('some_data' => $errorResponse);
 
-				$this -> load -> view('upload_success', $data);
+				//$this -> load -> view('upload_success', $data);
 				//return $errorResponse;
 
 			}
@@ -244,26 +244,26 @@ class Employee extends CI_Controller {
 			$updateIDOfLastEmployeeAdded = $this -> employee_model -> updateIdOfLastEmployeeAddedAfterSucessfullEmployeeAddition($employeeID, $versionBit);
 			if ($updateIDOfLastEmployeeAdded == 1) {
 				$successResponse = array("status" => "true", "msg" => "Teacher Successfully Added !!!");
-				$successResponse = json_encode($successResponse);
-				$data = array('some_data' => $successResponse);
+				echo $successResponse = json_encode($successResponse);
+				//$data = array('some_data' => $successResponse);
 
-				$this -> load -> view('upload_success', $data);
+				//$this -> load -> view('upload_success', $data);
 			} else {
 
 				$errorResponse = array("status" => "false", "msg" => $updateIDOfLastEmployeeAdded);
-				$errorResponse = json_encode($errorResponse);
-				$data = array('some_data' => $errorResponse);
+				echo $errorResponse = json_encode($errorResponse);
+				//$data = array('some_data' => $errorResponse);
 
-				$this -> load -> view('upload_success', $data);
+				//$this -> load -> view('upload_success', $data);
 				//return $errorResponse;
 
 			}
 		} else {
 
 			$errorResponse = array("status" => "false", "msg" => $saveEmployeeBasicDetails);
-			$errorResponse = json_encode($errorResponse);
-			$data = array('some_data' => $errorResponse);
-			$this -> load -> view('upload_success', $data);
+			echo $errorResponse = json_encode($errorResponse);
+			//$data = array('some_data' => $errorResponse);
+			//$this -> load -> view('upload_success', $data);
 			//return $errorResponse;
 
 		}
