@@ -8,7 +8,8 @@ var profileImage,
     mobileNumber,
     homePhone,
     dob,
-    address;
+    address,
+    salary;
 var emergencyCName,
     emergencyCNumber,
     bloodGroup,
@@ -34,6 +35,7 @@ function getValues() {
 	homePhone = $('#homePhone').val();
 	dob = $('#dob').val();
 	address = $('#address').val();
+	salary = $('#salary').val();
 	emergencyCName = $('#emergencyCName').val();
 	emergencyCNumber = $('#emergencyCNumber').val();
 	bloodGroup = $('#bloodGroup').val();
@@ -47,41 +49,32 @@ function getValues() {
 	superviserID = $('#superviserID').find(":selected").val();
 
 	var cdrReqParams = {};
-	cdrReqParams.profileImage = profileImage;
-	cdrReqParams.selectedOperator = firstName;
-	cdrReqParams.lookIn = middleName;
-	cdrReqParams.wildCardEnabled = lastName;
-	cdrReqParams.wildCardEnabled = email;
-	cdrReqParams.wildCardEnabled = cnic;
-	cdrReqParams.wildCardEnabled = mobileNumber;
-	cdrReqParams.wildCardEnabled = homePhone;
-	cdrReqParams.wildCardEnabled = dob;
-	cdrReqParams.wildCardEnabled = address;
-	cdrReqParams.wildCardEnabled = emergencyCName;
-	cdrReqParams.wildCardEnabled = emergencyCNumber;
-	cdrReqParams.wildCardEnabled = bloodGroup;
-	cdrReqParams.wildCardEnabled = spouseName;
-	cdrReqParams.wildCardEnabled = hireDate;
-	cdrReqParams.wildCardEnabled = resume;
-	cdrReqParams.wildCardEnabled = cnicImage;
-	cdrReqParams.wildCardEnabled = employeeType;
-	cdrReqParams.wildCardEnabled = department;
-	cdrReqParams.wildCardEnabled = designation;
-	cdrReqParams.wildCardEnabled = superviserID;
+	cdrReqParams.profilePic = profileImage;
+	cdrReqParams.firstName = firstName;
+	cdrReqParams.middleName = middleName;
+	cdrReqParams.lastName = lastName;
+	cdrReqParams.userName = userName;
+	cdrReqParams.email = email;
+	cdrReqParams.cnicNumber = cnic;
+	cdrReqParams.mobileNum = mobileNumber;
+	cdrReqParams.homePhone = homePhone;
+	cdrReqParams.dob = dob;
+	cdrReqParams.address = address;
+	cdrReqParams.emergencyCName = emergencyCName;
+	cdrReqParams.emergencyCNumber = emergencyCNumber;
+	cdrReqParams.bloodGroup = bloodGroup;
+	cdrReqParams.father_husbandName = spouseName;
+	cdrReqParams.hireDate = hireDate;
+	cdrReqParams.resume = resume;
+	cdrReqParams.cnicScannedImage = cnicImage;
+	cdrReqParams.employeeType = employeeType;
+	cdrReqParams.department = department;
+	cdrReqParams.designation = designation;
+	cdrReqParams.supervisorID = superviserID;
+	cdrReqParams.salary = salary;
 	var jsonStr = JSON.stringify(cdrReqParams);
 	API.call("/scooper/search_subscriber_basic.json", 'POST', function(data) {
-		if (data.status == "success") {
-			toastr.options.closeButton = true;
-			toastr.success(data.msg);
-			tableData = data.data;
-			createBasicSubscriberTable(tableData);
-		}
-		if (data.status == "Error") {
-			toastr.options.closeButton = true;
-			toastr.error(data.msg);
-			$("#loading_image").hide();
-		}
-
+		console.log(data);
 	}, function(error) {
 		console.log(error);
 	}, jsonStr);

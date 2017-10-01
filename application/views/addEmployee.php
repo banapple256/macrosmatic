@@ -158,6 +158,12 @@
 				        			<div class="row">
 				        				<div class="col-md-4">
 				        					<div class="form-group">
+	                            				<label class="control-label">Salary : </label><br>
+	                            				<input type="text" class="form-control" name="salary" id="salary" />
+								            </div>
+				        				</div>
+				        				<div class="col-md-4">
+				        					<div class="form-group">
 	                            				<label class="control-label">Resume : </label><br>
 	                            				<input type="file" class="form-control imageFileinput" name="resume" id="resume" data-show-preview="false"/>
 								            </div>
