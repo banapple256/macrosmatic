@@ -9,6 +9,14 @@ class Employee extends CI_Controller {
 		$this -> load -> model('employee_model');
 
 	}
+	
+	public function index() {
+		$data['header'] = 'template/header';
+		$data['sidebar'] = 'template/sidebar';
+		$data['main_content'] = 'addEmployee';
+		$data['footer'] = 'template/footer';
+		$this->load->view('template/template',$data);
+	}
 
 	/*public function index() {
 	 $this -> load -> view('upload_form', array('error' => ' '));

@@ -2,9 +2,9 @@
 function getEmployeeDetails() {
 
 		$employeeID='1004';
-		$firstName='Sufian';
-		$middleName='';
-		$lastName='Qayyum';
+		//$firstName='Sufian';
+		//$middleName='';
+		//$lastName='Qayyum';
 		$userName='qs02';
 		$email='qsufian@gmail.com';
 		$mobileNum='03455895007';
@@ -16,7 +16,7 @@ function getEmployeeDetails() {
 		$bloodGroup='B-';
 		$father_husbandName='Abdul Qayyum';
 		$hireDate='02-09-2017';
-		$profilePic='1004_profile_pic.jpeg';
+		//$profilePic='1004_profile_pic.jpeg';
 		$resume='1004_resume.pdf';
 		$cnicScannedImage='1004_cnic.jpeg';
 		$education = array(0 => array('employeeID'=>'1004','instituteName' => 'FGCC Lahore', 'qualification'=>'SSC',

@@ -15,8 +15,13 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/neon-core.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/neon-theme.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/neon-forms.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
     <script src="<?php echo base_url(); ?>assets/libraries/jquery/jquery-1.11.3.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/libraries/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	
+	<!-- File-Input -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/libraries/file-input/css/fileinput.min.css">
+
 </head>
 
 <body class="page-body">
